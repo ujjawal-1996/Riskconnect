@@ -81,4 +81,4 @@ $text=ConvertTo-BBCode -Data $($WhamOutput | Select-Object *) | Out-String ;$tex
 Add-CoreTicketUpdate -Text $text -TicketNumber $Ticket 
 Get-scomconfiguration -Ticket $Ticket 
 $text=ConvertTo-BBCode -Data $($WhamOutput | Select-Object *) | Out-String ;$text 
-Add-CoreTicketUpdate -Text $text -TicketNumber $Ticket 
+ 
