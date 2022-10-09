@@ -1,0 +1,10 @@
+$cd=$NULL
+$cd=Get-WmiObject win32_CDROMDrive -ComputerName $env:COMPUTERNAME -ErrorAction Stop
+if ($cd.Drive -eq "D:")
+{
+Write-Output "changing CD drive letter From D: to Z:"
+Set-WmiInstance -InputObject ( Get-WmiObject -Class win32_volume -Filter "DriveLetter = 'D:'" ) -Arguments @{driveLetter='Z:'}
+}
+$Vol = Get-Volume | Where-Object{$_.FileSystemLabel -match "D_DRIVE"}
+Get-Partition -Volume $Vol | Set-Partition -NewDriveLetter D
+ 
