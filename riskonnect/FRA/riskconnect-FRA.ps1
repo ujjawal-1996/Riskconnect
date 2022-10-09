@@ -75,3 +75,18 @@ Set-RegValue -Ticket $Ticket -Key 'HKLM:\SYSTEM\CurrentControlSet\Services\W32Ti
 $text=ConvertTo-BBCode -Data $($WhamOutput | Select-Object *) | Out-String ;$text 
 Add-CoreTicketUpdate -Text $text -TicketNumber $Ticket
 
+Get-RegValue -Ticket $Ticket -Key 'HKLM:\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\' -Name Type  
+$text=ConvertTo-BBCode -Data $($WhamOutput | Select-Object *) | Out-String ;$text 
+Add-CoreTicketUpdate -Text $text -TicketNumber $Ticket
+
+Set-RegValue -Ticket $Ticket -Key 'HKLM:\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\' -Name 'NTPserver' -Type 'String' -Value '1137618-FRDC01.riskonnect.rk1,0x01' 
+$text=ConvertTo-BBCode -Data $($WhamOutput | Select-Object *) | Out-String ;$text 
+Add-CoreTicketUpdate -Text $text -TicketNumber $Ticket
+
+Get-RegValue -Ticket $Ticket -Key 'HKLM:\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\' -Name 'NTPserver' 
+$text=ConvertTo-BBCode -Data $($WhamOutput | Select-Object *) | Out-String ;$text 
+Add-CoreTicketUpdate -Text $text -TicketNumber $Ticket
+
+Get-scomconfiguration -Ticket $Ticket
+$text=ConvertTo-BBCode -Data $($WhamOutput | Select-Object *) | Out-String ;$text 
+Add-CoreTicketUpdate -Text $text -TicketNumber $Ticket
